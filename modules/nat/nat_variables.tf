@@ -8,3 +8,8 @@ variable "public_subnet_id" {
     description = "ID of the public subnet where the NAT Gateway will be placed"
     type        = string
 }
+
+variable "vpc_name" {
+    description = "Name of the VPC"
+    type        = string
+}

@@ -3,7 +3,7 @@ resource "aws_route_table" "public" {
   vpc_id = var.vpc_id
   // Define a route for the Internet Gateway
   route {
-    cidr_block = var.public_subnets_cidr # Applied CIDR block
+    cidr_block = "0.0.0.0/0"             # Applied CIDR block
     gateway_id = var.internet_gateway_id # Internet Gateway ID - Assign later
   }
 
@@ -24,7 +24,7 @@ resource "aws_route_table" "private" {
   vpc_id = var.vpc_id
   // Define a route for the NAT Gateway
   route {
-    cidr_block     = var.private_subnets_cidr
+    cidr_block     = "0.0.0.0/0"        # Applied CIDR block
     nat_gateway_id = var.nat_gateway_id # NAT Gateway ID - Assign later
   }
 

@@ -39,3 +39,8 @@ variable "availability_zones" {
   description = "Availability zones"
   type = list(string)
 }
+
+variable "enable_nat_gateway" {
+    description = "A boolean flag to enable/disable NAT Gateway"
+    type        = bool
+}

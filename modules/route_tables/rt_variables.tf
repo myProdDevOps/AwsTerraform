@@ -15,6 +15,10 @@ variable "private_subnet_ids" {
   type = list(string)
 }
 
+variable "enable_nat_gateway" {
+  description = "Whether to create a private route table with NAT Gateway"
+  type        = bool
+}
 
 // Default gateway ids
 variable "internet_gateway_id" {
@@ -24,5 +28,10 @@ variable "internet_gateway_id" {
 
 variable "nat_gateway_id" {
   description = "ID of the NAT Gateway"
+  type        = string
+}
+
+variable "vpc_name" {
+  description = "Name of the VPC"
   type        = string
 }

@@ -1,3 +1,7 @@
 .terraform.lock.hcl
 .idea
 .terraform
+terraform.tfstate
+terraform.tfstate.backup
+plan_proj
+destroy_porj

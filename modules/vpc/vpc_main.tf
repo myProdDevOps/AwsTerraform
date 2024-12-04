@@ -49,14 +49,21 @@ resource "aws_internet_gateway" "main_igw" {
 
 // Nat Gateway
 module "nat" {
-  source               = "../nat"
-  enable_nat_gateway   = var.enable_nat_gateway
+  source             = "../nat"
+  enable_nat_gateway = var.enable_nat_gateway
   public_subnet_id = aws_subnet.public[0].id  # Use the first subnet created
-  availability_zones = element(var.availability_zones, count.index % length(var.availability_zones))
-  private_subnets_cidr = var.private_subnets_cidr
-  public_subnets_cidr  = var.public_subnets_cidr
+  vpc_name           = var.vpc_name
 }
 
 // Route Table
 module "route_tables" {
+  source               = "../route_tables"
+  vpc_id               = aws_vpc.main_vpc.id
+  internet_gateway_id  = aws_internet_gateway.main_igw.id
+  nat_gateway_id       = module.nat.nat_gateway_id
+  enable_nat_gateway   = var.enable_nat_gateway
+  public_subnet_ids    = aws_subnet.public[*].id
+  private_subnet_ids   = aws_subnet.private[*].id
+  vpc_name             = var.vpc_name
 }
+
